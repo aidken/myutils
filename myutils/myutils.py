@@ -71,7 +71,16 @@ def pd_ts(source_month):
         return pd.Timestamp(datetime.date(year=source_month.year, month=source_month.month, day=source_month.day), freq='M')
 
 
-def main():
+def is_ymd(tmp):
+    try:
+        m = datetime.datetime.strptime(tmp, '%Y-%m-%d')
+        return datetime.date(
+            year  = m.year,
+            month = m.month,
+            day   = m.day,
+        )
+    except:
+        return Falsedef main():
     pass
 
 
