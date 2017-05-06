@@ -3,7 +3,6 @@
 
 import logging
 import sys
-import pytest
 import datetime
 import calendar
 
@@ -40,6 +39,7 @@ def find_month(source_month=None, months_increment=None):
                 first_day, last_day = calendar.monthrange(tmp.year, tmp.month)
                 tmp = tmp.replace(day=1)
                 tmp = tmp - datetime.timedelta(days=1)
+                tmp = tmp.replace(day=1)
                 count -= 1
             return tmp
 
@@ -80,7 +80,18 @@ def is_ymd(tmp):
             day   = m.day,
         )
     except:
-        return Falsedef main():
+        try:
+            m = datetime.datetime.strptime(tmp, '%Y/%m/%d')
+            return datetime.date(
+                year  = m.year,
+                month = m.month,
+                day   = m.day,
+            )
+        except:
+            return False
+
+
+def main():
     pass
 
 
