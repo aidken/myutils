@@ -55,6 +55,8 @@ def test_pd_ts():
 def test_is_ymd():
     assert myutils.is_ymd('2015-03-01') == datetime.date(2015, 3, 1)
     assert myutils.is_ymd('2015/03/01') == datetime.date(2015, 3, 1)
+    assert myutils.is_ymd('20170519')   == datetime.date(2017, 5, 19)
+    assert myutils.is_ymd('170519')     == datetime.date(2017, 5, 19)
     assert myutils.is_ymd('something')  == False
 
 

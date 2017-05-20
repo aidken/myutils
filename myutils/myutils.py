@@ -72,16 +72,28 @@ def pd_ts(source_month):
 
 
 def is_ymd(tmp):
-    try:
-        m = datetime.datetime.strptime(tmp, '%Y-%m-%d')
-        return datetime.date(
-            year  = m.year,
-            month = m.month,
-            day   = m.day,
-        )
-    except:
+    tmp=str(tmp)
+    if len(tmp)==10:
         try:
-            m = datetime.datetime.strptime(tmp, '%Y/%m/%d')
+            m = datetime.datetime.strptime(tmp, '%Y-%m-%d')
+            return datetime.date(
+                year  = m.year,
+                month = m.month,
+                day   = m.day,
+            )
+        except:
+            try:
+                m = datetime.datetime.strptime(tmp, '%Y/%m/%d')
+                return datetime.date(
+                    year  = m.year,
+                    month = m.month,
+                    day   = m.day,
+                )
+            except:
+                return False
+    elif len(tmp)==8:
+        try:
+            m = datetime.datetime.strptime(tmp, '%Y%m%d')  # e.g. '20170519'
             return datetime.date(
                 year  = m.year,
                 month = m.month,
@@ -89,6 +101,18 @@ def is_ymd(tmp):
             )
         except:
             return False
+    elif len(tmp)==6:
+        try:
+            m = datetime.datetime.strptime(tmp, '%y%m%d')  # e.g. '170519'
+            return datetime.date(
+                year  = m.year,
+                month = m.month,
+                day   = m.day,
+            )
+        except:
+            return False
+    else:
+        return False
 
 
 def main():
