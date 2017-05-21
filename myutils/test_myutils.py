@@ -12,13 +12,8 @@ import myutils
 This script is to be run by pytest module.
 '''
 
-def main():
-    pass
-
-
 def test_find_month():
     d1 = datetime.date(2015, 1, 1)
-    # assert myutils.find_month(''    ) == ValueError
     assert myutils.find_month(d1,  0) == datetime.date(2015,  1,  1)
     assert myutils.find_month(d1,  3) == datetime.date(2015,  4,  1)
     assert myutils.find_month(d1, -3) == datetime.date(2014, 10,  1)
@@ -27,6 +22,11 @@ def test_find_month():
     assert myutils.find_month(d2,  0) == datetime.datetime(2016,  3,  1, 7, 15, 30)
     assert myutils.find_month(d2,  3) == datetime.datetime(2016,  6,  1, 7, 15, 30)
     assert myutils.find_month(d2, -3) == datetime.datetime(2015, 12,  1, 7, 15, 30)
+
+    d3 = datetime.date(2015, 1, 28)
+    assert myutils.find_month(d3,  0) == datetime.date(2015,  1,  1)
+    assert myutils.find_month(d3,  3) == datetime.date(2015,  4,  1)
+    assert myutils.find_month(d3, -3) == datetime.date(2014, 10,  1)
 
 
 def test_first_date_of_month():
@@ -57,7 +57,11 @@ def test_is_ymd():
     assert myutils.is_ymd('2015/03/01') == datetime.date(2015, 3, 1)
     assert myutils.is_ymd('20170519')   == datetime.date(2017, 5, 19)
     assert myutils.is_ymd('170519')     == datetime.date(2017, 5, 19)
-    assert myutils.is_ymd('something')  == False
+    assert myutils.is_ymd('hello!')     == False
+
+
+def main():
+    pass
 
 
 if __name__=='__main__':
