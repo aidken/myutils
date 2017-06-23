@@ -180,11 +180,29 @@ def is_ymd(tmp_str):
         return False
 
 
+def is_writable(file):
+    '''
+    Checks if given file exists, and if it is writable. If it is, returns True. If not, False.
+
+    If given file does not exist, FileNotFoundError is raised.
+    '''
+
+    import os.path
+    if os.path.exists(file) is False:
+        raise FileNotFoundError
+    elif os.path.isfile(file) is False:
+        raise FileNotFoundError
+    else:
+
+        try:
+            with open(file, 'w') as inf:
+                pass
+            return True
+        except:
+            return False
+
+
 def main():
-    pass
-
-
-def test():
     pass
 
 
